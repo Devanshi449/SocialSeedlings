@@ -2,6 +2,10 @@ import { useEffect, useState, useRef } from "react";
 import NewsPost from "./NewsPost";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from "axios";
+import Loader from "./Loader";
+import main from "../styles/Main.module.css"
+// import { useDispatch, useSelector } from 'react-redux';
+// import { saveData } from "./Action";
 
 export default function HomePage() {
   const [items, setItems] = useState<any>([]);
@@ -44,12 +48,20 @@ export default function HomePage() {
 //       setIsLoading(false);
 //     }
 //   };
+  // const dispatch = useDispatch();
 
   const fetchMoreData = async () => {
     // a fake async api call like which sends
     // 20 more records in 1.5 secs
-    const response = await axios.get("https://api.unsplash.com/photos/random/?client_id=YYIQqMVZ9SqnR9ERXMyhIibfGCJ35613-9Axnqjh8lo");
+    let counter=0;
+    const response = await axios.get(`https://api.unsplash.com/photos/random/?client_id=${process.env.accessKey}`);
     setItem(abc.concat(response.data));
+    // if(counter<4)
+    // {
+    //   counter++;
+    //   console.log(response.data)
+    //   // dispatch(saveData(response.data));
+    // }
     // setTimeout(() => {
     //   setItem(abc.concat(Array.from({ length: 20 })));
     // }, 1500);
@@ -69,7 +81,7 @@ export default function HomePage() {
             dataLength={abc.length}
             // next={() => { }} // Don't need this, as we will trigger the fetch in handleScroll function
             hasMore={true} // Don't load more data if loading or error state is true
-            loader={<p>Loading...</p>}
+            loader={<>Loading...</>}
             // next={() => fetchData(5)}
             next={fetchMoreData}
             // height={300}
@@ -83,9 +95,9 @@ export default function HomePage() {
                 div - #{index}
                 </div>
             ))} */}
-            <ul>
+            <ul >
               {abc.map((item :any) => (
-                <li key={item.id}>
+                <li key={item.id} className={main.newsPosts}>
                   <NewsPost
                     key={item.id}
                     id={item.id}

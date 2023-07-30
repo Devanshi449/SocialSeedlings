@@ -8,33 +8,26 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Image from "next/image";
 
-const posts=[
-    {
-        id:123,
-        username: "hello",
-        userImg:"https://links.papareact.com/3ke",
-        img1:"https://links.papareact.com/3ke",
-        Images: ["https://links.papareact.com/3ke", "https://links.papareact.com/3ke", "https://links.papareact.com/3ke", "https://links.papareact.com/3ke", "https://links.papareact.com/3ke", "https://links.papareact.com/3ke"],
-        caption : "I love SocialSeedlings ! I live in India and love reading news daily",
-    },
-];
-
 export default function UserProfile(){
     
     const router = useRouter();
     const username = router.query.UserProfile;
-    console.log(username);
+    // console.log(username);
 
     const [isListView,setisListView]=useState(false);
+    const [photo,setPhotos]=useState<any>([])
     const [user,setUser]=useState<any>(null);
     const [isError,setisError]=useState<any>(null);
     const [isLoading,setisLoading]=useState(false);
 
     const fetchProfile=async()=>{
         try{
-        const response=await axios.get(`https://api.unsplash.com/users/${username}/?client_id=YYIQqMVZ9SqnR9ERXMyhIibfGCJ35613-9Axnqjh8lo`)
-        const data=await response.data;
+        const response=await fetch(`https://api.unsplash.com/users/${username}/?client_id=${process.env.accessKey}`)
+        const data=await response.json();
         setUser(data);
+        const photoResponse=await axios.get(data.links.photos+`/?client_id=${process.env.accessKey}`)
+        const photoData=await photoResponse.data;
+        setPhotos(photoData);
         }
         catch (error : any) {
                 setisError(error.message);
@@ -56,42 +49,63 @@ export default function UserProfile(){
         <Headers/>
         {user && 
         <div className={userProfile.imageData}>
-            <Image src={user.profile_image.large} alt="profile Image" className={userProfile.profileImage}/>
-            <div className={userProfile.profileText}>{user.username}</div>
-            <div className={userProfile.profileText}>{user.first_name}{" "}{user.last_name}</div>
-            <div className={userProfile.profileCaption}>{user.bio}</div>
+            <img src={user.profile_image.large} alt="profile Image" className={userProfile.profileImage} />
+            <div className={userProfile.profileText}>Username : {user.username}</div>
+            <div className={userProfile.profileText}>Name : {user.first_name}{" "}{user.last_name}</div>
+            <div className={userProfile.profileCaption}>Bio : <i>{user.bio}</i></div>
             <div className={userProfile.boxes}>
                 <div className={userProfile.details}>
-                    No of Followers : {user.followers_count}
+                    No of Followers : <b>{user.followers_count}</b>
                 </div>
-                <div>
-                    Country : {user.location}
+                <div style={{marginLeft : "1rem"}}>
+                    Country : <b>{user.location}</b>
                 </div>
+                {/* <div>
+                    Total posts : {photo.user.total_photos}
+                </div> */}
             </div>
-            <button onClick={()=>{setisListView(!isListView)}}>ListView</button>
+            <button onClick={() => setisListView(!isListView)} className={userProfile.buttons}>
+                {isListView ? "Grid View" : "List View"}
+            </button>
         </div>
         }
-        {!isListView && <div className={userProfile.imageGallery}>
-            
-            {posts[0].Images.map((image, index) => (
-            <div>
-                <Image key={index} src={image} alt="Image" className={userProfile.imageGalleryImage}/>
-                <div>{posts[0].caption}</div>
+        {!isListView && (
+            <div className={userProfile.imageGallery}>
+                {photo.length > 0 ? (
+                photo.map((item: any) => (
+                    <div key={item.id} className={userProfile.userProfilebox}>
+                    <img src={item.urls.small} alt="Image" className={userProfile.imageGalleryImage} />
+                    <div className={userProfile.des}>{item.alt_description}</div>
             </div>
-            
-            ))}
+        ))
+        ) : ( <div>No user post</div>
+        )}
+        </div>)}
 
-        </div>} 
-
-            {
-            isListView && <div className={userProfile.listView}>
-                {posts[0].Images.map((image, index) => (
-                    <div><Image key={index} src={image} alt="Image" className={userProfile.imageGalleryImage}/>
-                    <div>{posts[0].caption}</div>
+        {
+            isListView && (
+                <div className={userProfile.listView}>
+                {photo.length > 0 ? (
+                    photo.map((item: any) => (
+                    <div key={item.id} className={userProfile.listBox}>
+                        <div>
+                        <div>UserName : {item.user.username}</div>
+                        <img src={item.urls.regular} alt="Image" className={userProfile.imageGalleryImage} />
+                        </div>
+                        <div>{item.alt_description}</div>
+                        <div style={{display : "flex" , justifyContent : "center" , alignItems : "center"}}>
+                            <div>Likes : {item.user.total_likes}</div>
+                            <div>Location : {item.user.location}</div>
+                        </div>
                     </div>
-            ))}
-            
-        </div>}
-        </>
+                    ))
+                ) : (
+                    <div>No user post</div>
+                )}
+    </div>)}
+    <div>{isError && <p>AN ERROR OCCURED</p>}</div>
+    <div>{isLoading && <p>PAGE IS LOADING</p>}</div>
+
+    </>
     )
 }

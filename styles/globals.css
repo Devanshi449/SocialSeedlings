@@ -105,7 +105,19 @@ a {
     color-scheme: dark;
   }
 } */ 
+:root,
+:root.light {
+  --color-bg: #ffffff;
+  --color-fg: #120d0d;
+}
+
+:root.dark {
+  --color-bg: #364146;
+  --color-fg: #ffffff;
+}
 
 body{
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
 }

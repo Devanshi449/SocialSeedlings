@@ -2,6 +2,9 @@ import { Key } from "react";
 // import Suggestions from "./Suggestions";
 import suggestion from "../styles/Suggestion.module.css"
 import Image from "next/image";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Link from "next/link";
 
 const posts=[
     {
@@ -11,26 +14,34 @@ const posts=[
         img:"https://links.papareact.com/3ke",
         caption : "I love SocialSeedlings",
     },
-
-    {
-        id:124,
-        username: "hello",
-        userImg:"https://links.papareact.com/3ke",
-        img:"https://links.papareact.com/3ke",
-        caption : "I love SocialSeedlings",
-    },
-    {
-        id:124,
-        username: "hello",
-        userImg:"https://links.papareact.com/3ke",
-        img:"https://links.papareact.com/3ke",
-        caption : "I love SocialSeedlings",
-    },
 ];
 
 
 export default function SuggestionsBox()
+
 {
+    const [user,setUser]=useState<any>(null);
+    const [isLoading , setIsLoading]=useState(true);
+    const [isError,setIsError]=useState<any>(null);
+    
+    const fetchProfile=async()=>{
+        try{
+        const response=await fetch(`https://api.unsplash.com/users/sirsimo/?client_id=${process.env.accessKey}`)
+        const data=await response.json();
+        setUser(data);
+        }
+        catch (error) {
+                setIsError(error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+    useEffect(()=>{
+        fetchProfile();
+    },[])
+    
+    if(!user) return null;
     return(
         <>
             <div className={suggestion.box}>
@@ -40,20 +51,34 @@ export default function SuggestionsBox()
             </div>
 
             <>
-            {
-                posts.map((item)=>{
-                    return(
-                        <div key={item.id} className={suggestion.Profilebox}>
-                        <Image src={item.img} className={suggestion.image} alt="Image"></Image>
-                        <div className={suggestion.profileData}>
-                            <h2 className={suggestion.profileName}>{item.username}</h2>
-                            <h3 className={suggestion.profileBio}>{item.caption}</h3>
-                        </div>
-                    </div>
-                    )
-                })
-            }
+            <>{ user &&
+            <div className={suggestion.Profilebox}>
+            <>
+            <img src={user.profile_image.small} alt="Profile_pic" className={suggestion.image}></img>
+            <div style={{marginLeft : "1.3rem"}}>
+                <Link href={`/user/${user.username}/?client_id=${process.env.accessKey}`} style={{textDecoration : "none", color : "var(--color-fg)"}}><div style={{fontWeight :"bold", fontSize : "large" }}>{user.username}</div></Link>
+                <div style={{fontSize : "small", color : "grey", marginTop : "0.2rem"}}>{user.bio}</div>
+            </div>
             </>
+            
+            
+        </div>
+        }</>
+        
+        </>
+            <>
+            <>{ user &&
+            <div className={suggestion.Profilebox}>
+            <>
+            <img src={user.profile_image.small} alt="Profile_pic" className={suggestion.image}></img>
+            <div style={{marginLeft : "1.3rem"}}>
+                <Link href={`/user/${user.username}/?client_id=${process.env.accessKey}`} style={{textDecoration : "none", color : "var(--color-fg)"}}><div style={{fontWeight :"bold", fontSize : "large" }}>{user.username}</div></Link>
+                <div style={{fontSize : "small", color : "grey", marginTop : "0.2rem"}}>{user.bio}</div>
+            </div>
+        </>
+        </div>}
+        </>
+        </>
         </>
 
     )

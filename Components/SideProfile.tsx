@@ -2,6 +2,7 @@ import React , { useEffect, useState } from "react"
 import main from "../styles/Main.module.css"
 import axios from "axios"
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SideProfile(){
     
@@ -11,8 +12,8 @@ export default function SideProfile(){
     
     const fetchProfile=async()=>{
         try{
-        const response=await axios.get("https://api.unsplash.com/users/Devanshi59/?client_id=YYIQqMVZ9SqnR9ERXMyhIibfGCJ35613-9Axnqjh8lo")
-        const data=await response.data;
+        const response=await fetch(`https://api.unsplash.com/users/Devanshi59/?client_id=${process.env.accessKey}`)
+        const data=await response.json();
         setUser(data);
         }
         catch (error) {
@@ -22,18 +23,18 @@ export default function SideProfile(){
             }
         }
 
-    // useEffect(()=>{
-    //     fetchProfile();
-    // },[])
+    useEffect(()=>{
+        fetchProfile();
+    },[])
     
-    // if(!user) return null;
+    if(!user) return null;
 
     return(
         <>{ user &&
             <div className={main.sideProfile}>
-            <Image src={user.profile_image.small} alt="Profile_pic" className={main.profileImg}></Image>
+            <img src={user.profile_image.small} alt="Profile_pic" className={main.profileImg}></img>
             <div style={{marginLeft : "1rem"}}>
-                <div style={{fontWeight :"bold", fontSize : "large"}}>{user.username}</div>
+                <Link href={`/user/${user.username}/?client_id=${process.env.accessKey}`} style={{textDecoration : "none", color : "var(--color-fg)"}}><div style={{fontWeight :"bold", fontSize : "large"}}>{user.username}</div></Link>
                 <div style={{fontSize : "small", color : "grey", marginTop : "0.2rem"}}>{user.bio}</div>
             </div>
         </div>

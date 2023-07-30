@@ -4,6 +4,7 @@ import { AiFillLike } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
 import { BsEmojiSmile } from "react-icons/bs";
 import Image from "next/image";
+import Link from "next/link";
 
 interface NewsPostProps {
   id: number;
@@ -20,14 +21,14 @@ export default function NewsPost({ id, username, userImg, img, caption , like}: 
         <div className={post.newsFeed}>
             {/* // header  */}
             <div className={post.newsHeader}>
-                <Image src={userImg} alt="" className={post.postImage}>
-                </Image>
-                <p className={post.userName}>{username}</p>
+                <img src={userImg} alt="" className={post.postImage}>
+                </img>
+                <Link href={`/user/${username}/?client_id=KXT_HcOpSEssafTTsJeB9XPC2brN-S7xz_JfXcgJRX8`} className={post.userName}><p className={post.userName}>{username}</p></Link>
                 <BiNews className={post.newsIcon}/>
             </div>
         {/* // img  */}
-            <Image src={img} className={post.img} alt="image">
-            </Image>
+            <img src={img} className={post.img} alt="image">
+            </img>
         {/* // buttons  */}
         <div className={post.iconBar}>
             <AiFillLike className={post.like} style={{marginLeft : "0rem"}}/>

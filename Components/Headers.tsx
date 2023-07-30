@@ -6,6 +6,8 @@ import {BsFillSunFill} from "react-icons/bs";
 import { useEffect ,useState } from "react";
 import axios from "axios"
 import Image from "next/image";
+import { useSelector } from "react-redux";
+// import 
 
 export default function Headers()
 {
@@ -15,8 +17,8 @@ export default function Headers()
     
     const fetchProfile=async()=>{
         try{
-        const response=await axios.get("https://api.unsplash.com/users/Devanshi59/?client_id=YYIQqMVZ9SqnR9ERXMyhIibfGCJ35613-9Axnqjh8lo")
-        const data=await response.data;
+        const response=await fetch(`https://api.unsplash.com/users/Devanshi59/?client_id=${process.env.accessKey}`)
+        const data=await response.json();
         setUser(data);
         }
         catch (error) {
@@ -29,6 +31,9 @@ export default function Headers()
     useEffect(()=>{
         fetchProfile();
     },[])
+
+    // const {mode}=useSelector((state)=>state.darkMode);
+    // console.log(mode);
     
     return(
         <>
@@ -57,7 +62,7 @@ export default function Headers()
                     {/* <FiMenu className={header.menu} /> */}
                     <BsFillSunFill className={header.home}/>
 
-                    <Image src={user.profile_image.small} alt="profile-pic" className={header.profile}></Image>
+                    <img src={user.profile_image.small} alt="profile-pic" className={header.profile}></img>
 
                 </div>
 

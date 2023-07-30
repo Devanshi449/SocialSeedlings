@@ -11,12 +11,13 @@
         max-width: 800px;
         text-align: center;
         margin: auto;
-        margin-top: 4rem;
+        margin-top: 2rem;
 }
 
 .imageGalleryImage{
     max-width: 100%;
-    height: auto;
+    height: 15rem;
+    width : 17rem;
 }
 
 .boxes{
@@ -25,11 +26,28 @@
     justify-content: center;
     text-align: center;
     margin: auto;
+    margin-top: 0.5rem;
+}
+
+.buttons{
+    background-color: #615f62;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .profileText{
     font-size: medium;
     font-weight: bold;
+    margin-top: 0.5rem;
 }
 
 .profileImage{
@@ -55,5 +73,25 @@
     text-align: center;
 }
 
+.userProfilebox{
+    background-color: rgb(214, 213, 213);
+}
+
+.des{
+    font-weight: 500;
+    font-family :Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.listBox{
+    background-color: rgb(221, 220, 220);
+    width: 20%;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.profileCaption{
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
 
 
