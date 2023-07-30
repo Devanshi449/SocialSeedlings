@@ -2,27 +2,17 @@ import { useEffect, useState, useRef } from "react";
 import NewsPost from "./NewsPost";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from "axios";
-import Loader from "./Loader";
 import main from "../styles/Main.module.css";
 import Error from "./Error";
-// import { useDispatch, useSelector } from 'react-redux';
-// import { saveData } from "./Action";
 
 export default function HomePage() {
-  // const [items, setItems] = useState<any>([]);
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<any>(null);
   const [page, setPage] = useState(1);
   const [items, setItem] = useState<any>([]);
   const scrollableTargetRef = useRef<HTMLDivElement | null>(null);
   const [cacheData, setCacheData] = useState<any>([]);
-
-  const style = {
-  height: 30,
-  border: "1px solid green",
-  margin: 6,
-  padding: 8
-};
 
   const fetchMoreData = async () => {
    
@@ -46,8 +36,9 @@ export default function HomePage() {
       fetchMoreData();
   }, []);
 
-  useEffect(() => {
-		if (error) {
+  useEffect(() => {                   /*This is caching, using react persist I have done the caching, 
+                                      if there will be any error data will be picked from the localstorage*/
+		if (error) { 
 			let localData = localStorage.getItem("homeData");
  
 			if (localData) {
@@ -58,13 +49,12 @@ export default function HomePage() {
 		} else {
 			localStorage.setItem("homeData", JSON.stringify(items));
 		}
-  }, [items, error]);
+  }, [items]);
  
   
   return (
     <>
       <div ref={scrollableTargetRef}>
-        {/* {abc.length > 0 && */}
           <InfiniteScroll
 					style={{
 						overflow: "hidden",
@@ -74,7 +64,8 @@ export default function HomePage() {
 					loader={<>Loading...</>}
 					next={fetchMoreData}
 				>
-					<ul>
+					<ul style={{listStyleType : "none", marginLeft : "0" ,marginBlockStart: "0",
+              marginBlockEnd: "0rem" , paddingInlineStart : "0"}}>
 						{error && <p>Error: {error.message}</p>}
 						{
 			
@@ -83,6 +74,7 @@ export default function HomePage() {
 									<li
 										key={item.id}
 										className={main.newsPosts}
+                    style={{margin : "0rem"}}
 									>
 										<NewsPost
 											key={item.id}
@@ -99,12 +91,12 @@ export default function HomePage() {
 								))
 						}
 						{
-							// agar error hai aur cache bhi nahi hai toh final error dikha denge
+							// If there is there and also no cache then error will be shown
 							error && cacheData.length === 0 && (
 								<p>No data to show</p>
 							)
 						}
-						{items.map((item: any) => (
+						{items.map((item: any,index : any) => (
 							<li key={item.id} className={main.newsPosts}>
 								<NewsPost
 									key={item.id}
@@ -116,11 +108,12 @@ export default function HomePage() {
 									like={item.likes}
 								/>
 							</li>
+              
 						))}
 					</ul>
 				</InfiniteScroll>
         {/* } */}
-        {error && <Error/>}
+        {error && <Error errorMessage={error.message} />}
       </div>
     </>
   )

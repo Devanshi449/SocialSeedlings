@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    accessKey: "YYIQqMVZ9SqnR9ERXMyhIibfGCJ35613-9Axnqjh8lo",
+    accessKey: "8vqNs_FAL18STBAEgX5njoNRdFR3jHtagS9iGrf-nVw",
   },
 };
 

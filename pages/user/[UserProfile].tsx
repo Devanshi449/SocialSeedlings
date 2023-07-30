@@ -6,14 +6,17 @@ import { useState , useEffect} from "react";
 import { useRouter } from "next/router";
 // import NewsPost from "@/Components/NewsPost";
 import axios from "axios";
-import Image from "next/image";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import main from "../../styles/Main.module.css"
+
 
 export default function UserProfile(){
+
+    const theme = useSelector((state: any) => state.data.theme);
     
     const router = useRouter();
     const username = router.query.UserProfile;
-    // console.log(username);
-
+    
     const [isListView,setisListView]=useState(false);
     const [photo,setPhotos]=useState<any>([])
     const [user,setUser]=useState<any>(null);
@@ -45,7 +48,7 @@ export default function UserProfile(){
   }
 
     return(
-        <>
+        <div style={{backgroundColor:"var(--color-bg)"}} className={theme === 'light' ? main.light : main.dark}>
         <Headers/>
         {user && 
         <div className={userProfile.imageData}>
@@ -60,9 +63,6 @@ export default function UserProfile(){
                 <div style={{marginLeft : "1rem"}}>
                     Country : <b>{user.location}</b>
                 </div>
-                {/* <div>
-                    Total posts : {photo.user.total_photos}
-                </div> */}
             </div>
             <button onClick={() => setisListView(!isListView)} className={userProfile.buttons}>
                 {isListView ? "Grid View" : "List View"}
@@ -103,9 +103,9 @@ export default function UserProfile(){
                     <div>No user post</div>
                 )}
     </div>)}
-    <div>{isError && <p>AN ERROR OCCURED</p>}</div>
-    <div>{isLoading && <p>PAGE IS LOADING</p>}</div>
+    <div>{isError && <p>An error occured : {isError.message}</p>}</div>
+    <div>{isLoading && <p>Page is loading...</p>}</div>
 
-    </>
+    </div>
     )
 }

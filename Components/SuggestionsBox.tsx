@@ -6,19 +6,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 
-const posts=[
-    {
-        id:123,
-        username: "hello",
-        userImg:"https://links.papareact.com/3ke",
-        img:"https://links.papareact.com/3ke",
-        caption : "I love SocialSeedlings",
-    },
-];
-
-
 export default function SuggestionsBox()
-
 {
     const [user,setUser]=useState<any>(null);
     const [isLoading , setIsLoading]=useState(true);

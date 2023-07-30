@@ -4,10 +4,14 @@ import { AiFillHome } from "react-icons/ai";
 import {BsFillSunFill} from "react-icons/bs";
 import { useEffect ,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setTheme } from "../store/actions/data"
+import { setTheme } from "../store/actions/data";
+import { RiMoonClearFill } from "react-icons/ri";
+import Image from "next/image";
 
 export default function Headers()
+
 {
+    const theme = useSelector((state: any) => state.data.theme);
     const dispatch = useDispatch();
     const [user,setUser]=useState<any>(null);
     const [isLoading , setIsLoading]=useState(true);
@@ -52,16 +56,11 @@ export default function Headers()
                     </div>
                 </div>
                 {/* left  */}
-                <div className={header.iconBox}>
+                <div className={header.iconBox} >
                     <AiFillHome className={header.home}/>
-                    {/* <FiMenu className={header.menu} /> */}
-                    <button
-                        onClick={() => {dispatch(setTheme())}}
-                    >
-                        <BsFillSunFill className={header.home}/>
-                    </button>
+                   <button onClick={() => { dispatch(setTheme()) }} style={{border : "none"}}>
+                    {theme === 'light' ? <BsFillSunFill className={header.home} /> : <RiMoonClearFill className={header.home} />}</button>
                     
-
                     <img src={user.profile_image.small} alt="profile-pic" className={header.profile}></img>
 
                 </div>

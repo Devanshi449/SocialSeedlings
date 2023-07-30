@@ -3,6 +3,7 @@ import main from "../styles/Main.module.css"
 import axios from "axios"
 import Image from "next/image";
 import Link from "next/link";
+import Error from "./Error";
 
 export default function SideProfile(){
     
@@ -39,7 +40,8 @@ export default function SideProfile(){
             </div>
         </div>
         }
-        {isError ? <p>Error: {isError.message}</p> : <p></p>}
+        {isError && <Error errorMessage={isError.message}/>}
+        {isLoading && <p>Loading...</p>}
         </>
     )
 }
