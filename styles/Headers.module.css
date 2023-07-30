@@ -107,4 +107,8 @@
          visibility: visible;
 
      }
+
+     .searchWidth{
+        visibility: hidden;
+     }
 }

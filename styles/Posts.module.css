@@ -1,7 +1,7 @@
 .newsHeader{
     display: flex;
     align-items: center;
-    padding: 1.25rem;
+    padding: 0.8rem;
 }
 
 .postImage{
@@ -70,10 +70,13 @@
 }
 
 .caption{
-    overflow: hidden;
+    display: flex;
+        overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
+        /* white-space: nowrap; */
         padding: 1.25rem;
+        word-wrap: break-word;
+        margin-top: 0.5rem;
 }
 
 .like:hover{
@@ -85,7 +88,7 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     border : 1px solid rgb(218, 212, 212) ;
     margin-top: 0.5rem;
-    width : 40rem;
+    /* width : 40rem; */
     margin: auto;
 }
 
@@ -99,4 +102,66 @@
 .data{
     font-weight: bold;
     margin-right: 0.25rem;
+}
+
+.bio{
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+@media (max-width : 768px) {
+    .newsFeed{
+        width : 15rem;
+        margin: 0%;
+        /* height : 10rem; */
+    }
+
+    .img{
+        height : 10rem;
+    }
+
+    .postImage{
+        width: 2rem;
+        height: 2rem;
+    }
+    
+    .caption{
+        font-size: 1rem;
+        padding: 0.4rem;
+    }
+
+    .userName{
+        font-size: 0.7rem;
+    }
+
+    .data{
+        font-size: 0.7rem;
+    }
+
+    .newsHeader{
+        padding: 0.5rem;
+    }
+
+    .form{
+        padding : 0.3rem;
+    }
+
+    .inputBox{
+        margin-left: 0.4rem;
+    }
+
+    .like{
+        height : 1rem;
+        width : 1rem;
+    }
+
+    .iconBar{
+        margin-left: 0.3rem;
+        height : 1.5rem;
+    }
+
+        .bio {
+            font-weight: 400;
+            font-size: 0.7rem;
+        }
 }

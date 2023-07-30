@@ -47,7 +47,7 @@ export default function Headers()
                         SocialSeedlings
                     </div>
                 </div>
-                {/* right  */}
+                {/* middle  */}
                 <div className={header.searchWidth}>
                     <div className={header.searchBar}>
                     <div className={header.iconBar}>

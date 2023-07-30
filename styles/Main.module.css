@@ -42,7 +42,7 @@
 @media (max-width : 768px){
     .bodyNews{
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        max-width: 75%;
+        max-width: 100%;
     }
 
     .sideSection{
@@ -61,6 +61,8 @@
     .bodyNews{
         grid-template-columns: repeat(3, minmax(0, 1fr));
         max-width: 72rem;
+        margin-left: 0rem;
+        margin-right: 0rem;
 
     }
 }

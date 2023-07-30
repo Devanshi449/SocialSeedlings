@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    accessKey: "YYIQqMVZ9SqnR9ERXMyhIibfGCJ35613-9Axnqjh8lo",
+    accessKey: "KXT_HcOpSEssafTTsJeB9XPC2brN-S7xz_JfXcgJRX8",
   },
 };
 
-module.exports = nextConfig
+module.exports = nextConfig;

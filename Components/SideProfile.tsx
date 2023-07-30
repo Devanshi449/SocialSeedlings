@@ -12,8 +12,8 @@ export default function SideProfile(){
     
     const fetchProfile=async()=>{
         try{
-        const response=await fetch(`https://api.unsplash.com/users/Devanshi59/?client_id=${process.env.accessKey}`)
-        const data=await response.json();
+        const response=await axios.get(`https://api.unsplash.com/users/Devanshi59/?client_id=${process.env.accessKey}`)
+        const data=await response.data;
         setUser(data);
         }
         catch (error) {

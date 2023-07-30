@@ -22,8 +22,8 @@ export default function UserProfile(){
 
     const fetchProfile=async()=>{
         try{
-        const response=await fetch(`https://api.unsplash.com/users/${username}/?client_id=${process.env.accessKey}`)
-        const data=await response.json();
+        const response=await axios.get(`https://api.unsplash.com/users/${username}/?client_id=${process.env.accessKey}`)
+        const data=await response.data;
         setUser(data);
         const photoResponse=await axios.get(data.links.photos+`/?client_id=${process.env.accessKey}`)
         const photoData=await photoResponse.data;
@@ -89,13 +89,13 @@ export default function UserProfile(){
                     photo.map((item: any) => (
                     <div key={item.id} className={userProfile.listBox}>
                         <div>
-                        <div>UserName : {item.user.username}</div>
-                        <img src={item.urls.regular} alt="Image" className={userProfile.imageGalleryImage} />
+                        <div style={{fontSize : "1rem" , fontFamily : "fantasy"}}>UserName : {item.user.username}</div>
+                        <img src={item.urls.regular} alt="Image" className={userProfile.imageimg} />
                         </div>
                         <div>{item.alt_description}</div>
                         <div style={{display : "flex" , justifyContent : "center" , alignItems : "center"}}>
-                            <div>Likes : {item.user.total_likes}</div>
-                            <div>Location : {item.user.location}</div>
+                            <div style={{fontWeight : "bold" }}>Likes: <i>{item.user.total_likes}</i></div>
+                            <div style={{fontWeight : "bold", marginLeft : "1rem" }}>Location : <i>{item.user.location}</i></div>
                         </div>
                     </div>
                     ))
