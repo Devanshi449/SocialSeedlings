@@ -1,0 +1,59 @@
+.imageData{
+    /* margin: auto; */
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.imageGallery {
+    display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 4px;
+        max-width: 800px;
+        text-align: center;
+        margin: auto;
+        margin-top: 4rem;
+}
+
+.imageGalleryImage{
+    max-width: 100%;
+    height: auto;
+}
+
+.boxes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+}
+
+.profileText{
+    font-size: medium;
+    font-weight: bold;
+}
+
+.profileImage{
+    height : 12rem ; 
+    width : 12rem ; 
+    border-radius: 20px;
+}
+
+.listProfile{
+    height : 6rem;
+    width : 6rem;
+}
+
+.listUsername{
+
+}
+
+.listProfile{
+    margin: auto;
+    text-align: center;
+}
+.listView{
+    text-align: center;
+}
+
+
+

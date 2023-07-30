@@ -1,0 +1,86 @@
+.sugBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.box{
+    margin-top: -0.4rem;
+    margin-left: 1.5rem;
+}
+
+.heading{
+    display: flex;
+    justify-content: space-between;
+    font-size :medium;
+    height : 3rem;
+    /* margin-bottom: rem; */
+}
+
+.title{
+    color: gray;
+    font-weight : 700;
+}
+
+.newsHeadBox{
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+}
+
+.newsHead{
+    display: flex;
+    
+}
+
+.heading{
+    font-weight: bold;
+    margin-left: 0.2rem;
+}
+
+.icon{
+    border: 1px solid black;
+    height : 2.2rem;
+    width: 3.6rem;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Profilebox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: 2px; */
+    margin-left: 1.5rem;
+}
+
+.image{
+    width: 2.5rem;
+    height : 2.5rem;
+    border-radius: 9999px;
+    /* padding: 2px; */
+    border-width: 1px;
+}
+
+.profileData{
+    flex: 1 1 0%;
+    margin-left: 1rem;
+}
+
+.profileName{
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.profileBio{
+    font-size: 0.75rem;
+    color: rgb(181, 175, 175);
+    margin-top: 0.1rem;
+}
+
+.head{
+    margin-left: 0.3rem;
+}

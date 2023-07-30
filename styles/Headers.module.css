@@ -1,0 +1,110 @@
+
+ .navbox {
+     display: flex;
+     justify-content: space-around;
+     max-width: 100%;
+     margin-left: auto;
+     margin-right: auto;
+     height: 4.5rem;
+ }
+
+ .navtitle {
+     position: relative;
+     width: 8rem;
+     height: 5rem;
+     cursor: pointer;
+     display: inline-grid;
+     margin-top: 1.6rem;
+     margin-left: 1rem;
+ }
+
+ .logo{
+    font-weight: 600;
+    height : 4rem;
+ }
+
+ .searchIcon {
+     height: 1.25rem;
+     width: 1.25rem;
+     color: gray;
+ }
+
+ .searchBar {
+     margin-top: 0.25rem;
+     position: relative;
+     padding: 0.75rem;
+     display: flex;
+     align-items: center;
+ }
+
+ .iconBar {
+     display: flex;
+     padding-left: 0.75rem;
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     align-items: center;
+     pointer-events: none;
+ }
+
+ .searchBox {
+     background-color: rgb(207 205 205 / 48%);
+     display: block;
+     width: 100%;
+     padding-left: 2.5rem;
+     font-size: 0.875rem;
+     border: 1px solid rgb(205, 202, 202);
+     border-radius: 0.375rem;
+     height: 2.5rem;
+     display: flex;
+     align-items: center;
+ }
+
+ .searchWidth {
+     max-width: 20rem;
+ }
+
+ .iconBox {
+     display: flex;
+     align-items: center;
+     justify-content: flex-end;
+     margin-left: 1rem;
+ }
+
+ .home {
+     height: 1.5rem;
+     width: 1.5rem;
+     cursor: pointer;
+    margin-left: 1rem;
+ }
+
+ .menu {
+     height: 1.5rem;
+     width: 1.5rem;
+     cursor: pointer;
+ }
+
+ .navbar{
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    background-color: white;
+    position: sticky;
+    z-index: 50;
+    top : 0;
+    width: 100%;
+ }
+
+ .profile{
+    height : 2.5rem;
+    width: 2.5rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    margin-left: 1rem;
+ }
+
+
+@media (max-width: 768px) {
+     .menu {
+         visibility: visible;
+
+     }
+}
