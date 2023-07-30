@@ -39,6 +39,16 @@
 
 }
 
+.light {
+    --color-bg: #ffffff;
+    --color-fg: #120d0d;
+}
+
+.dark {
+    --color-bg: #364146;
+    --color-fg: #ffffff;
+}
+
 @media (max-width : 768px){
     .bodyNews{
         grid-template-columns: repeat(2, minmax(0, 1fr));

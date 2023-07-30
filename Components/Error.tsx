@@ -2,7 +2,7 @@
 import React from "react";
 import errorStyles from "../styles/Error.module.css";
 
-const ErrorScreen = () => {
+const Error = () => {
     // {errorMessage: any}
   return (
     <div className={errorStyles.errorContainer}>
@@ -14,4 +14,4 @@ const ErrorScreen = () => {
   );
 };
 
-export default ErrorScreen;
+export default Error;

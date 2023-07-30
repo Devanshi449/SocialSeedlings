@@ -1,16 +1,14 @@
 import header from "../styles/Headers.module.css"
 import {BiSearch} from "react-icons/bi";
 import { AiFillHome } from "react-icons/ai";
-import { FiMenu } from "react-icons/fi";
 import {BsFillSunFill} from "react-icons/bs";
 import { useEffect ,useState } from "react";
-import axios from "axios"
-import Image from "next/image";
-import { useSelector } from "react-redux";
-// import 
+import { useDispatch, useSelector } from "react-redux";
+import { setTheme } from "../store/actions/data"
 
 export default function Headers()
 {
+    const dispatch = useDispatch();
     const [user,setUser]=useState<any>(null);
     const [isLoading , setIsLoading]=useState(true);
     const [isError,setIsError]=useState<any>(null);
@@ -31,10 +29,7 @@ export default function Headers()
     useEffect(()=>{
         fetchProfile();
     },[])
-
-    // const {mode}=useSelector((state)=>state.darkMode);
-    // console.log(mode);
-    
+   
     return(
         <>
         {
@@ -60,7 +55,12 @@ export default function Headers()
                 <div className={header.iconBox}>
                     <AiFillHome className={header.home}/>
                     {/* <FiMenu className={header.menu} /> */}
-                    <BsFillSunFill className={header.home}/>
+                    <button
+                        onClick={() => {dispatch(setTheme())}}
+                    >
+                        <BsFillSunFill className={header.home}/>
+                    </button>
+                    
 
                     <img src={user.profile_image.small} alt="profile-pic" className={header.profile}></img>
 

@@ -23,7 +23,7 @@ export default function NewsPost({ id, username, userImg, img, caption , like}: 
             <div className={post.newsHeader}>
                 <img src={userImg} alt="" className={post.postImage}>
                 </img>
-                <Link href={`/user/${username}/?client_id=KXT_HcOpSEssafTTsJeB9XPC2brN-S7xz_JfXcgJRX8`} className={post.userName}><p className={post.userName}>{username}</p></Link>
+                <Link href={`/user/${username}/?client_id=${process.env.accessKey}`} className={post.userName}><p className={post.userName}>{username}</p></Link>
                 <BiNews className={post.newsIcon}/>
             </div>
             

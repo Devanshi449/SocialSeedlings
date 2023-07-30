@@ -106,12 +106,12 @@ a {
   }
 } */ 
 :root,
-:root.light {
+.light {
   --color-bg: #ffffff;
   --color-fg: #120d0d;
 }
 
-:root.dark {
+.dark {
   --color-bg: #364146;
   --color-fg: #ffffff;
 }
