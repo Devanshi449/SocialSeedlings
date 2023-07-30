@@ -5,6 +5,7 @@ import { FiMenu } from "react-icons/fi";
 import {BsFillSunFill} from "react-icons/bs";
 import { useEffect ,useState } from "react";
 import axios from "axios"
+import Image from "next/image";
 
 export default function Headers()
 {
@@ -56,7 +57,7 @@ export default function Headers()
                     {/* <FiMenu className={header.menu} /> */}
                     <BsFillSunFill className={header.home}/>
 
-                    <img src={user.profile_image.small} alt="profile-pic" className={header.profile}></img>
+                    <Image src={user.profile_image.small} alt="profile-pic" className={header.profile}></Image>
 
                 </div>
 

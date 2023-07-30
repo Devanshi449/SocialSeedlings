@@ -6,6 +6,7 @@ import { useState , useEffect} from "react";
 import { useRouter } from "next/router";
 // import NewsPost from "@/Components/NewsPost";
 import axios from "axios";
+import Image from "next/image";
 
 const posts=[
     {
@@ -55,7 +56,7 @@ export default function UserProfile(){
         <Headers/>
         {user && 
         <div className={userProfile.imageData}>
-            <img src={user.profile_image.large} alt="profile Image" className={userProfile.profileImage}/>
+            <Image src={user.profile_image.large} alt="profile Image" className={userProfile.profileImage}/>
             <div className={userProfile.profileText}>{user.username}</div>
             <div className={userProfile.profileText}>{user.first_name}{" "}{user.last_name}</div>
             <div className={userProfile.profileCaption}>{user.bio}</div>
@@ -74,7 +75,7 @@ export default function UserProfile(){
             
             {posts[0].Images.map((image, index) => (
             <div>
-                <img key={index} src={image} alt="Image" className={userProfile.imageGalleryImage}/>
+                <Image key={index} src={image} alt="Image" className={userProfile.imageGalleryImage}/>
                 <div>{posts[0].caption}</div>
             </div>
             
@@ -85,7 +86,7 @@ export default function UserProfile(){
             {
             isListView && <div className={userProfile.listView}>
                 {posts[0].Images.map((image, index) => (
-                    <div><img key={index} src={image} alt="Image" className={userProfile.imageGalleryImage}/>
+                    <div><Image key={index} src={image} alt="Image" className={userProfile.imageGalleryImage}/>
                     <div>{posts[0].caption}</div>
                     </div>
             ))}

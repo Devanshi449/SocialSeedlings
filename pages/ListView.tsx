@@ -2,6 +2,7 @@ import Headers from "@/Components/Headers";
 import userProfile from "../styles/UserProfile.module.css"
 // import NewsPost from "@/Components/NewsPost";
 import HomePage from "@/Components/HomePage";
+import Image from "next/image";
 
 const posts=[
     {
@@ -20,7 +21,7 @@ export default function ListView()
         <div>
             <Headers/>
             <div className={userProfile.listProfile}>
-                <img src={posts[0].img} alt="image" className={userProfile.listProfile}/>
+                <Image src={posts[0].img} alt="image" className={userProfile.listProfile}/>
                 <div className={userProfile.listUsername}>{posts[0].username}</div>
             </div>
             {/* <NewsPost id={0} username={""} userImg={""} img={""} caption={""} like={0}/> */}

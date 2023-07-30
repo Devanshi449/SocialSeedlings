@@ -1,6 +1,7 @@
 import React , { useEffect, useState } from "react"
 import main from "../styles/Main.module.css"
 import axios from "axios"
+import Image from "next/image";
 
 export default function SideProfile(){
     
@@ -30,7 +31,7 @@ export default function SideProfile(){
     return(
         <>{ user &&
             <div className={main.sideProfile}>
-            <img src={user.profile_image.small} alt="Profile_pic" className={main.profileImg}></img>
+            <Image src={user.profile_image.small} alt="Profile_pic" className={main.profileImg}></Image>
             <div style={{marginLeft : "1rem"}}>
                 <div style={{fontWeight :"bold", fontSize : "large"}}>{user.username}</div>
                 <div style={{fontSize : "small", color : "grey", marginTop : "0.2rem"}}>{user.bio}</div>

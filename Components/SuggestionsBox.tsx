@@ -1,6 +1,7 @@
 import { Key } from "react";
 // import Suggestions from "./Suggestions";
 import suggestion from "../styles/Suggestion.module.css"
+import Image from "next/image";
 
 const posts=[
     {
@@ -43,7 +44,7 @@ export default function SuggestionsBox()
                 posts.map((item)=>{
                     return(
                         <div key={item.id} className={suggestion.Profilebox}>
-                        <img src={item.img} className={suggestion.image}></img>
+                        <Image src={item.img} className={suggestion.image} alt="Image"></Image>
                         <div className={suggestion.profileData}>
                             <h2 className={suggestion.profileName}>{item.username}</h2>
                             <h3 className={suggestion.profileBio}>{item.caption}</h3>

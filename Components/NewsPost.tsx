@@ -3,6 +3,7 @@ import { BiNews } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
 import { BsEmojiSmile } from "react-icons/bs";
+import Image from "next/image";
 
 interface NewsPostProps {
   id: number;
@@ -19,14 +20,14 @@ export default function NewsPost({ id, username, userImg, img, caption , like}: 
         <div className={post.newsFeed}>
             {/* // header  */}
             <div className={post.newsHeader}>
-                <img src={userImg} alt="" className={post.postImage}>
-                </img>
+                <Image src={userImg} alt="" className={post.postImage}>
+                </Image>
                 <p className={post.userName}>{username}</p>
                 <BiNews className={post.newsIcon}/>
             </div>
         {/* // img  */}
-            <img src={img} className={post.img}>
-            </img>
+            <Image src={img} className={post.img} alt="image">
+            </Image>
         {/* // buttons  */}
         <div className={post.iconBar}>
             <AiFillLike className={post.like} style={{marginLeft : "0rem"}}/>
