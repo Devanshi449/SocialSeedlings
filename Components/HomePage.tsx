@@ -4,12 +4,12 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from "axios";
 
 export default function HomePage() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<any>(null);
   const [page, setPage] = useState(1);
 
-  const [abc, setItem] = useState([]);
+  const [abc, setItem] = useState<any>([]);
   const scrollableTargetRef = useRef<HTMLDivElement | null>(null);
 
   const style = {
@@ -84,7 +84,7 @@ export default function HomePage() {
                 </div>
             ))} */}
             <ul>
-              {abc.map((item) => (
+              {abc.map((item :any) => (
                 <li key={item.id}>
                   <NewsPost
                     key={item.id}

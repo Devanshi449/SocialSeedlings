@@ -25,7 +25,7 @@ export default function UserProfile(){
     console.log(username);
 
     const [isListView,setisListView]=useState(false);
-    const [user,setUser]=useState(null);
+    const [user,setUser]=useState<any>(null);
     const [isError,setisError]=useState<any>(null);
     const [isLoading,setisLoading]=useState(false);
 
@@ -35,7 +35,7 @@ export default function UserProfile(){
         const data=await response.data;
         setUser(data);
         }
-        catch (error) {
+        catch (error : any) {
                 setisError(error.message);
             } finally {
                 setisLoading(false);
@@ -46,13 +46,17 @@ export default function UserProfile(){
         fetchProfile();
     },[])
 
+    if (!user) {
+    return <div>Loading...</div>; 
+  }
+
     return(
         <>
         <Headers/>
         {user && 
         <div className={userProfile.imageData}>
-            <img src={user.profile_image!.large} alt="profile Image" className={userProfile.profileImage}/>
-            <div className={userProfile.profileText}>{user.username?}</div>
+            <img src={user.profile_image.large} alt="profile Image" className={userProfile.profileImage}/>
+            <div className={userProfile.profileText}>{user.username}</div>
             <div className={userProfile.profileText}>{user.first_name}{" "}{user.last_name}</div>
             <div className={userProfile.profileCaption}>{user.bio}</div>
             <div className={userProfile.boxes}>
