@@ -20,9 +20,18 @@ export default function HomePage() {
       const response = await axios.get(
         `https://api.unsplash.com/photos/random/?client_id=${process.env.accessKey}`
       );
-      setItem(items.concat(response.data));
+      setItem([...items,...response.data]);
+      localStorage.setItem("homeData", JSON.stringify(items));
+      setError(null)
     } catch (error: any) {
       setError(error.message);
+      let localData = localStorage.getItem("homeData");
+
+      if (localData) {
+        setItem(JSON.parse(localData));
+      } else {
+        setItem([]);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -32,23 +41,6 @@ export default function HomePage() {
     fetchMoreData();
   }, []);
   
-  console.log(items);
-  useEffect(() => {
-    /*This is caching, using react persist I have done the caching, 
-                                      if there will be any error data will be picked from the localstorage*/
-    if (error) {
-      let localData = localStorage.getItem("homeData");
-
-      if (localData) {
-        setItem(JSON.parse(localData));
-      } else {
-        setItem([]);
-      }
-    } else {
-      localStorage.setItem("homeData", JSON.stringify(items));
-    }
-  }, [items]);
-
   if (!items)
   {
     return null;

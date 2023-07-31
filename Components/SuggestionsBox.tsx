@@ -43,13 +43,13 @@ export default function SuggestionsBox()
             {user && (
               <div className={suggestion.Profilebox}>
                 <>
-                  {/* <Image
+                  <Image
                     src={user.profile_image.small}
                     alt="Profile_pic"
                     className={suggestion.image}
-                    layout="fill"
-                    objectFit="contain"
-                  ></Image> */}
+                    width={35}
+                    height={35}
+                  ></Image>
                   <div style={{ marginLeft: "1.3rem" }}>
                     <Link
                       href={`/user/${user.username}/?client_id=${process.env.accessKey}`}
@@ -82,13 +82,13 @@ export default function SuggestionsBox()
             {user && (
               <div className={suggestion.Profilebox}>
                 <>
-                  {/* <Image
+                  <Image
                     src={user.profile_image.small}
                     alt="Profile_pic"
                     className={suggestion.image}
-                    layout="fill"
-                    objectFit="contain"
-                  ></Image> */}
+                    width={35}
+                    height={35}
+                  ></Image>
                   <div style={{ marginLeft: "1.3rem" }}>
                     <Link
                       href={`/user/${user.username}/?client_id=${process.env.accessKey}`}

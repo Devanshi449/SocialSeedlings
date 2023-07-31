@@ -21,7 +21,6 @@ interface NewsPostProps {
 export default function NewsPost({ id, username, userImg, img, caption , like , blurHash}: NewsPostProps)
 {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
-    console.log(blurHash);
     return (
       <div className={post.newsFeed}>
         <div className={post.newsHeader}>
@@ -29,8 +28,9 @@ export default function NewsPost({ id, username, userImg, img, caption , like , 
             src={userImg}
             alt=""
             className={post.postImage}
-            layout="fill"
-            objectFit="contain"
+            height ={40}
+            width={40}
+            
           ></Image>
           <Link
             href={`/user/${username}/?client_id=${process.env.accessKey}`}
@@ -40,44 +40,51 @@ export default function NewsPost({ id, username, userImg, img, caption , like , 
           </Link>
           <BiNews className={post.newsIcon} />
         </div>
-
-        {/* <Image
-          src={img}
-          className={post.img}
-          alt="image"
-          layout="fill"
-          objectFit="contain"
-        ></Image> */}
-        <Image
-          src={img}
-          alt=""
-          className={post.img}
-          layout="fill"
-          objectFit="contain"
-          onLoadingComplete={() => {
-            setIsImageLoaded(true);
-          }}
+        <div
           style={{
-            opacity: isImageLoaded ? 1 : 0,
-            transition: "opacity 0.3s ease-in-out",
-            zIndex: isImageLoaded ? 1 : -1,
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            zIndex: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-        ></Image>
-        {
+        >
+          <Image
+            src={img}
+            alt=""
+            className={post.img}
+            //   layout="fill"
+              objectFit="contain"
+            height={500}
+            width={500}
+            onLoadingComplete={() => {
+              setIsImageLoaded(true);
+            }}
+            style={{
+              opacity: isImageLoaded ? 1 : 0,
+              transition: "opacity 0.3s ease-in-out",
+              zIndex: isImageLoaded ? 1 : -1,
+              position: "absolute",
+            }}
+          />
           <Blurhash
             hash={blurHash}
-            className={post.img}
+            height={500}
             style={{
+              width : "100%",
               objectFit: "cover",
               opacity: isImageLoaded ? 0.5 : 1,
               transition: "opacity 0.3s ease-in-out",
+              position: "absolute",
+              zIndex: isImageLoaded ? -1 : 1,
             }}
             resolutionX={32}
             resolutionY={32}
             punch={1}
           />
-        }
-
+        </div>
         <div className={post.iconBar}>
           <AiFillLike className={post.like} style={{ marginLeft: "0rem" }} />
           <div>{like}</div>

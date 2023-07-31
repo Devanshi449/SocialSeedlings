@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    accessKey: "CO7yAeYI9ebF0o9lkM1V0bsukD6tTFoeWhGmRoz-E7E",
+    accessKey: "nkyfaJaL9HH9BRLObz05dzyqdlHyqW8gerc3y-b89-Y",
   },
   images: {
     domains: ["images.unsplash.com"],

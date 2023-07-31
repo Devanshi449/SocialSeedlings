@@ -8,7 +8,7 @@ import { setTheme } from "../store/actions/data";
 import { RiMoonClearFill } from "react-icons/ri";
 import Image from "next/image";
 
-export default function Headers()
+export default function Headers({children } : {children : React.ReactNode})
 
 {
     const theme = useSelector((state: any) => state.data.theme);
@@ -59,7 +59,7 @@ export default function Headers()
               {/* left  */}
               <div className={header.iconBox}>
                 <AiFillHome className={header.home} />
-                <button
+                <div
                   onClick={() => {
                     dispatch(setTheme());
                   }}
@@ -70,19 +70,20 @@ export default function Headers()
                   ) : (
                     <RiMoonClearFill className={header.home} />
                   )}
-                </button>
+                </div>
 
                 <Image
                   src={user.profile_image.small}
                   alt="profile-pic"
                   className={header.profile}
-                  layout="fill"
-                  objectFit="contain"
+                  width={40}
+                  height={40}
                 ></Image>
               </div>
             </div>
           </div>
         )}
+        {children}
       </>
     );
 }

@@ -53,7 +53,6 @@ export default function UserProfile(){
         style={{ backgroundColor: "var(--color-bg)" }}
         className={theme === "light" ? main.light : main.dark}
       >
-        <Headers />
         {user && (
           <div className={userProfile.imageData}>
             <Image
