@@ -21,14 +21,14 @@ export default function NewsPost({ id, username, userImg, img, caption , like}: 
         <div className={post.newsFeed}>
             
             <div className={post.newsHeader}>
-                <img src={userImg} alt="" className={post.postImage}>
-                </img>
+                <Image src={userImg} alt="" className={post.postImage}>
+                </Image>
                 <Link href={`/user/${username}/?client_id=${process.env.accessKey}`} className={post.userName}><p className={post.userName}>{username}</p></Link>
                 <BiNews className={post.newsIcon}/>
             </div>
             
-            <img src={img} className={post.img} alt="image">
-            </img>
+            <Image src={img} className={post.img} alt="image">
+            </Image>
             
             <div className={post.iconBar}>
                 <AiFillLike className={post.like} style={{marginLeft : "0rem"}}/>

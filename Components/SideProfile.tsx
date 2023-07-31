@@ -33,7 +33,7 @@ export default function SideProfile(){
     return(
         <>{ user &&
             <div className={main.sideProfile}>
-            <img src={user.profile_image.small} alt="Profile_pic" className={main.profileImg}></img>
+            <Image src={user.profile_image.small} alt="Profile_pic" className={main.profileImg}></Image>
             <div style={{marginLeft : "1rem"}}>
                 <Link href={`/user/${user.username}/?client_id=${process.env.accessKey}`} style={{textDecoration : "none", color : "var(--color-fg)"}}><div style={{fontWeight :"bold", fontSize : "large"}}>{user.username}</div></Link>
                 <div style={{fontSize : "small", color : "grey", marginTop : "0.2rem"}}>{user.bio}</div>

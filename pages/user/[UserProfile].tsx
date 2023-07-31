@@ -6,8 +6,9 @@ import { useState , useEffect} from "react";
 import { useRouter } from "next/router";
 // import NewsPost from "@/Components/NewsPost";
 import axios from "axios";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from "react-redux";
 import main from "../../styles/Main.module.css"
+import Image from "next/image";
 
 
 export default function UserProfile(){
@@ -45,14 +46,14 @@ export default function UserProfile(){
 
     if (!user) {
     return <div>Loading...</div>; 
-  }
+    }
 
     return(
         <div style={{backgroundColor:"var(--color-bg)"}} className={theme === 'light' ? main.light : main.dark}>
         <Headers/>
         {user && 
         <div className={userProfile.imageData}>
-            <img src={user.profile_image.large} alt="profile Image" className={userProfile.profileImage} />
+            <Image src={user.profile_image.large} alt="profile Image" className={userProfile.profileImage} />
             <div className={userProfile.profileText}>Username : {user.username}</div>
             <div className={userProfile.profileText}>Name : {user.first_name}{" "}{user.last_name}</div>
             <div className={userProfile.profileCaption}>Bio : <i>{user.bio}</i></div>
@@ -74,11 +75,11 @@ export default function UserProfile(){
                 {photo.length > 0 ? (
                 photo.map((item: any) => (
                     <div key={item.id} className={userProfile.userProfilebox}>
-                    <img src={item.urls.small} alt="Image" className={userProfile.imageGalleryImage} />
+                    <Image src={item.urls.small} alt="Image" className={userProfile.imageGalleryImage} />
                     <div className={userProfile.des}>{item.alt_description}</div>
             </div>
         ))
-        ) : ( <div>No user post</div>
+        ) : ( <div>NoImager post</div>
         )}
         </div>)}
 
@@ -90,11 +91,11 @@ export default function UserProfile(){
                     <div key={item.id} className={userProfile.listBox}>
                         <div>
                         <div style={{fontSize : "1rem" , fontFamily : "fantasy"}}>UserName : {item.user.username}</div>
-                        <img src={item.urls.regular} alt="Image" className={userProfile.imageimg} />
+                        <Image src={item.urls.regular} alt="Image" className={userProfile.imageimg} />
                         </div>
                         <div>{item.alt_description}</div>
                         <div style={{display : "flex" , justifyContent : "center" , alignItems : "center"}}>
-                            <div style={{fontWeight : "bold" }}>Likes: <i>{item.user.total_likes}</i></div>
+                         <div style={{fontWeight : "bold" }}>Likes: <i>{item.user.total_likes}</i></div>
                             <div style={{fontWeight : "bold", marginLeft : "1rem" }}>Location : <i>{item.user.location}</i></div>
                         </div>
                     </div>

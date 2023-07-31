@@ -61,7 +61,7 @@ export default function Headers()
                    <button onClick={() => { dispatch(setTheme()) }} style={{border : "none"}}>
                     {theme === 'light' ? <BsFillSunFill className={header.home} /> : <RiMoonClearFill className={header.home} />}</button>
                     
-                    <img src={user.profile_image.small} alt="profile-pic" className={header.profile}></img>
+                    <Image src={user.profile_image.small} alt="profile-pic" className={header.profile}></Image>
 
                 </div>
 

@@ -42,7 +42,7 @@ export default function SuggestionsBox()
             <>{ user &&
             <div className={suggestion.Profilebox}>
             <>
-            <img src={user.profile_image.small} alt="Profile_pic" className={suggestion.image}></img>
+            <Image src={user.profile_image.small} alt="Profile_pic" className={suggestion.image}></Image>
             <div style={{marginLeft : "1.3rem"}}>
                 <Link href={`/user/${user.username}/?client_id=${process.env.accessKey}`} style={{textDecoration : "none", color : "var(--color-fg)"}}><div style={{fontWeight :"bold", fontSize : "large" }}>{user.username}</div></Link>
                 <div style={{fontSize : "small", color : "grey", marginTop : "0.2rem"}}>{user.bio}</div>
@@ -58,7 +58,7 @@ export default function SuggestionsBox()
             <>{ user &&
             <div className={suggestion.Profilebox}>
             <>
-            <img src={user.profile_image.small} alt="Profile_pic" className={suggestion.image}></img>
+            <Image src={user.profile_image.small} alt="Profile_pic" className={suggestion.image}></Image>
             <div style={{marginLeft : "1.3rem"}}>
                 <Link href={`/user/${user.username}/?client_id=${process.env.accessKey}`} style={{textDecoration : "none", color : "var(--color-fg)"}}><div style={{fontWeight :"bold", fontSize : "large" }}>{user.username}</div></Link>
                 <div style={{fontSize : "small", color : "grey", marginTop : "0.2rem"}}>{user.bio}</div>

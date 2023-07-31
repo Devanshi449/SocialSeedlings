@@ -4,6 +4,9 @@ const nextConfig = {
   env: {
     accessKey: "8vqNs_FAL18STBAEgX5njoNRdFR3jHtagS9iGrf-nVw",
   },
+  images : {
+    domains : ["images.unsplash.com"]
+  }
 };
 
 module.exports = nextConfig;
