@@ -11,6 +11,9 @@ import Link from "next/link";
 import { AiFillLike } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
 import { BsEmojiSmile } from "react-icons/bs";
+import Error from "@/Components/Error";
+import Loader from "@/Components/Loader";
+
 
 export default function UserProfile() {
   const theme = useSelector((state: any) => state.data.theme);
@@ -45,15 +48,15 @@ export default function UserProfile() {
 
   useEffect(() => {
     fetchProfile();
-  }, []);
+  }, [username]);
 
   if (!user) {
-    return <div>Loading...</div>;
+    return <Loader/>;
   }
 
   return (
     <div
-      style={{ backgroundColor: "var(--color-bg)" }}
+      style={{ backgroundColor: "var(--color-bg)", height: "100vh" }}
       className={theme === "light" ? main.light : main.dark}
     >
       {user && (
@@ -115,16 +118,20 @@ export default function UserProfile() {
               </div>
             ))
           ) : (
-            <div>NoImager post</div>
+            <div style={{ color: "var(--color-fg)" }}>No user post</div>
           )}
         </div>
       )}
 
       {isListView && (
-        <div className={userProfile.listView} style={{marginTop : "0"}}>
+        <div className={userProfile.listView}>
           {photo.length > 0 ? (
             photo.map((item: any) => (
-              <div key={item.id} className={userProfile.listBox} style={{marginTop : "1rem"}}>
+              <div
+                key={item.id}
+                className={userProfile.listBox}
+                style={{ marginTop: "1rem" }}
+              >
                 <div>
                   <div
                     className={post.newsHeader}
@@ -144,7 +151,10 @@ export default function UserProfile() {
                     >
                       <p className={post.userName}>{username}</p>
                     </Link>
-                    <BiNews className={post.newsIcon} />
+                    <BiNews
+                      className={post.newsIcon}
+                      style={{ color: "var(--color-fg)" }}
+                    />
                   </div>
                   <Image
                     loading="lazy"
@@ -158,27 +168,18 @@ export default function UserProfile() {
                 <div className={post.iconBar}>
                   <AiFillLike
                     className={post.like}
-                    style={{ marginLeft: "0rem", color: "var[--color-fg]" }}
+                    style={{ marginLeft: "0rem" }}
                   />
                   <div>{item.user.total_likes}</div>
-                  <FaRegCommentDots
-                    className={post.like}
-                    style={{ color: "var[--color-fg]" }}
-                  />
+                  <FaRegCommentDots className={post.like} />
                 </div>
-                <div
-                  className={post.caption}
-                  style={{ color: "var[--color-fg]" }}
-                >
+                <div className={post.caption}>
                   <span className={post.data}>{username}</span>
                   <div className={post.bio}>{item.alt_description}</div>
                 </div>
 
                 <form className={post.form}>
-                  <BsEmojiSmile
-                    className={post.smileIcon}
-                    style={{ color: "var[--color-fg]" }}
-                  />
+                  <BsEmojiSmile className={post.smileIcon} />
                   <input
                     type="text"
                     placeholder="Add your comment"
@@ -189,12 +190,17 @@ export default function UserProfile() {
               </div>
             ))
           ) : (
-            <div>No user post</div>
+            <div
+              className={userProfile.imageGallery}
+              style={{ color: "var(--color-fg)" }}
+            >
+              No user post
+            </div>
           )}
         </div>
       )}
-      <div>{isError && <p>An error occured : {isError.message}</p>}</div>
-      <div>{isLoading && <p>Page is loading...</p>}</div>
+      <div>{isError && <Error errorMessage={isError.message} />}</div>
+      <div>{isLoading && <Loader />}</div>
     </div>
   );
 }

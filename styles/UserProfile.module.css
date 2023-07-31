@@ -1,17 +1,16 @@
 .imageData{
-    /* margin: auto; */
     text-align: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .imageGallery {
     display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 4px;
-        max-width: 800px;
-        text-align: center;
-        margin: auto;
-        margin-top: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 4px;
+    max-width: 800px;
+    text-align: center;
+    margin: auto;
+    margin-top: 2rem;
 }
 
 .imageGalleryImage{
@@ -55,13 +54,14 @@
     font-weight: bold;
     margin-top: 0.1rem;
     font-family: 'Dancing Script', cursive;
-        
+    color: var(--color-fg);
 }
 
 .profileName {
     font-size: medium;
     font-weight: 700;
     margin-top: 0.1rem;
+    color: var(--color-fg);
 }
 
 .profileImage{
@@ -114,6 +114,7 @@
     font-weight: bold;
     width: 60%;
     margin: auto;
+    color: var(--color-fg);
 }
 
 .bio{

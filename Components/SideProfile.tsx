@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Error from "./Error";
 import { useDispatch } from "react-redux";
+import Loader from "./Loader";
 
 export default function SideProfile(){
     
@@ -67,7 +68,7 @@ export default function SideProfile(){
           </div>
         )}
         {isError && <Error errorMessage={isError.message} />}
-        {isLoading && <p>Loading...</p>}
+        {isLoading && <Loader/>}
       </>
     );
 }

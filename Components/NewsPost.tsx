@@ -40,7 +40,10 @@ export default function NewsPost({ id, username, userImg, img, caption , like , 
           >
             <p className={post.userName}>{username}</p>
           </Link>
-          <BiNews className={post.newsIcon} />
+          <BiNews
+            className={post.newsIcon}
+            style={{ color: "var(--color-fg)" }}
+          />
         </div>
         <div
           style={{
@@ -90,16 +93,16 @@ export default function NewsPost({ id, username, userImg, img, caption , like , 
         <div className={post.iconBar}>
           <AiFillLike
             className={post.like}
-            style={{ marginLeft: "0rem", color: "var[--color-fg]" }}
+            style={{ marginLeft: "0rem", color: "var(--color-fg)" }}
           />
-          <div>{like}</div>
+          <div style={{ color: "var(--color-fg)" }}>{like}</div>
           <FaRegCommentDots
             className={post.like}
-            style={{ color: "var[--color-fg]" }}
+            style={{ color: "var(--color-fg)" }}
           />
         </div>
 
-        <div className={post.caption} style={{ color: "var[--color-fg]" }}>
+        <div className={post.caption} style={{ color: "var(--color-fg)" }}>
           <span className={post.data}>{username}</span>
           <div className={post.bio}>{caption}</div>
         </div>
@@ -107,7 +110,7 @@ export default function NewsPost({ id, username, userImg, img, caption , like , 
         <form className={post.form}>
           <BsEmojiSmile
             className={post.smileIcon}
-            style={{ color: "var[--color-fg]" }}
+            style={{ color: "var(--color-fg)" }}
           />
           <input
             type="text"

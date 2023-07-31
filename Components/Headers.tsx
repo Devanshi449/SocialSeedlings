@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTheme } from "../store/actions/data";
 import { RiMoonClearFill } from "react-icons/ri";
 import Image from "next/image";
+import Link from "next/link";
+import axios from "axios";
 
 export default function Headers({ children }: { children: React.ReactNode }) {
   const theme = useSelector((state: any) => state.data.theme);
@@ -17,10 +19,10 @@ export default function Headers({ children }: { children: React.ReactNode }) {
 
   const fetchProfile = async () => {
     try {
-      const response = await fetch(
+      const response = await axios.get(
         `https://api.unsplash.com/users/Devanshi59/?client_id=${process.env.accessKey}`
       );
-      const data = await response.json();
+      const data = await response.data;
       setUser(data);
     } catch (error) {
       setIsError(error);
@@ -57,7 +59,12 @@ export default function Headers({ children }: { children: React.ReactNode }) {
             </div>
             {/* left  */}
             <div className={header.iconBox}>
-              <AiFillHome className={header.home} />
+              <Link
+                href="/"
+                style={{ textDecoration: "none", color: "var(--color-fg)" }}
+              >
+                <AiFillHome className={header.home} />
+              </Link>
               <div
                 onClick={() => {
                   dispatch(setTheme());
@@ -70,15 +77,18 @@ export default function Headers({ children }: { children: React.ReactNode }) {
                   <RiMoonClearFill className={header.home} />
                 )}
               </div>
-
-              <Image
-                loading="lazy"
-                src={user.profile_image.small}
-                alt="profile-pic"
-                className={header.profile}
-                width={40}
-                height={40}
-              ></Image>
+              <Link
+                href={`/user/Devanshi59/?client_id=${process.env.accessKey}`}
+              >
+                <Image
+                  loading="lazy"
+                  src={user.profile_image.small}
+                  alt="profile-pic"
+                  className={header.profile}
+                  width={40}
+                  height={40}
+                ></Image>
+              </Link>
             </div>
           </div>
         </div>
