@@ -56,7 +56,7 @@ export default function UserProfile() {
 
   return (
     <div
-      style={{ backgroundColor: "var(--color-bg)", height: "100vh" }}
+      style={{ backgroundColor: "var(--color-bg)", height: "100%" }}
       className={theme === "light" ? main.light : main.dark}
     >
       {user && (
@@ -124,7 +124,7 @@ export default function UserProfile() {
       )}
 
       {isListView && (
-        <div className={userProfile.listView}>
+        <div className={userProfile.listView} style={{margin : "auto"}}>
           {photo.length > 0 ? (
             photo.map((item: any) => (
               <div
