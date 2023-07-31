@@ -124,13 +124,13 @@ export default function UserProfile() {
       )}
 
       {isListView && (
-        <div className={userProfile.listView} style={{margin : "auto"}}>
+        <div className={userProfile.listView}>
           {photo.length > 0 ? (
             photo.map((item: any) => (
               <div
                 key={item.id}
                 className={userProfile.listBox}
-                style={{ marginTop: "1rem" }}
+                style={{ marginTop: "1rem" , margin : "auto"}}
               >
                 <div>
                   <div
