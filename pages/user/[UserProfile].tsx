@@ -48,65 +48,108 @@ export default function UserProfile(){
     return <div>Loading...</div>; 
     }
 
-    return(
-        <div style={{backgroundColor:"var(--color-bg)"}} className={theme === 'light' ? main.light : main.dark}>
-        <Headers/>
-        {user && 
-        <div className={userProfile.imageData}>
-            <Image src={user.profile_image.large} alt="profile Image" className={userProfile.profileImage} />
-            <div className={userProfile.profileText}>Username : {user.username}</div>
-            <div className={userProfile.profileText}>Name : {user.first_name}{" "}{user.last_name}</div>
-            <div className={userProfile.profileCaption}>Bio : <i>{user.bio}</i></div>
+    return (
+      <div
+        style={{ backgroundColor: "var(--color-bg)" }}
+        className={theme === "light" ? main.light : main.dark}
+      >
+        <Headers />
+        {user && (
+          <div className={userProfile.imageData}>
+            <Image
+              src={user.profile_image.large}
+              alt="profile Image"
+              className={userProfile.profileImage}
+              layout="fill"
+              objectFit="contain"
+            />
+            <div className={userProfile.profileText}>
+              Username : {user.username}
+            </div>
+            <div className={userProfile.profileText}>
+              Name : {user.first_name} {user.last_name}
+            </div>
+            <div className={userProfile.profileCaption}>
+              Bio : <i>{user.bio}</i>
+            </div>
             <div className={userProfile.boxes}>
-                <div className={userProfile.details}>
-                    No of Followers : <b>{user.followers_count}</b>
-                </div>
-                <div style={{marginLeft : "1rem"}}>
-                    Country : <b>{user.location}</b>
-                </div>
+              <div className={userProfile.details}>
+                No of Followers : <b>{user.followers_count}</b>
+              </div>
+              <div style={{ marginLeft: "1rem" }}>
+                Country : <b>{user.location}</b>
+              </div>
             </div>
-            <button onClick={() => setisListView(!isListView)} className={userProfile.buttons}>
-                {isListView ? "Grid View" : "List View"}
+            <button
+              onClick={() => setisListView(!isListView)}
+              className={userProfile.buttons}
+            >
+              {isListView ? "Grid View" : "List View"}
             </button>
-        </div>
-        }
-        {!isListView && (
-            <div className={userProfile.imageGallery}>
-                {photo.length > 0 ? (
-                photo.map((item: any) => (
-                    <div key={item.id} className={userProfile.userProfilebox}>
-                    <Image src={item.urls.small} alt="Image" className={userProfile.imageGalleryImage} />
-                    <div className={userProfile.des}>{item.alt_description}</div>
-            </div>
-        ))
-        ) : ( <div>NoImager post</div>
+          </div>
         )}
-        </div>)}
+        {!isListView && (
+          <div className={userProfile.imageGallery}>
+            {photo.length > 0 ? (
+              photo.map((item: any) => (
+                <div key={item.id} className={userProfile.userProfilebox}>
+                  <Image
+                    src={item.urls.small}
+                    alt="Image"
+                    className={userProfile.imageGalleryImage}
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                  <div className={userProfile.des}>{item.alt_description}</div>
+                </div>
+              ))
+            ) : (
+              <div>NoImager post</div>
+            )}
+          </div>
+        )}
 
-        {
-            isListView && (
-                <div className={userProfile.listView}>
-                {photo.length > 0 ? (
-                    photo.map((item: any) => (
-                    <div key={item.id} className={userProfile.listBox}>
-                        <div>
-                        <div style={{fontSize : "1rem" , fontFamily : "fantasy"}}>UserName : {item.user.username}</div>
-                        <Image src={item.urls.regular} alt="Image" className={userProfile.imageimg} />
-                        </div>
-                        <div>{item.alt_description}</div>
-                        <div style={{display : "flex" , justifyContent : "center" , alignItems : "center"}}>
-                         <div style={{fontWeight : "bold" }}>Likes: <i>{item.user.total_likes}</i></div>
-                            <div style={{fontWeight : "bold", marginLeft : "1rem" }}>Location : <i>{item.user.location}</i></div>
-                        </div>
+        {isListView && (
+          <div className={userProfile.listView}>
+            {photo.length > 0 ? (
+              photo.map((item: any) => (
+                <div key={item.id} className={userProfile.listBox}>
+                  <div>
+                    <div style={{ fontSize: "1rem", fontFamily: "fantasy" }}>
+                      UserName : {item.user.username}
                     </div>
-                    ))
-                ) : (
-                    <div>No user post</div>
-                )}
-    </div>)}
-    <div>{isError && <p>An error occured : {isError.message}</p>}</div>
-    <div>{isLoading && <p>Page is loading...</p>}</div>
-
-    </div>
-    )
+                    <Image
+                      src={item.urls.regular}
+                      alt="Image"
+                      className={userProfile.imageimg}
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <div>{item.alt_description}</div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ fontWeight: "bold" }}>
+                      Likes: <i>{item.user.total_likes}</i>
+                    </div>
+                    <div style={{ fontWeight: "bold", marginLeft: "1rem" }}>
+                      Location : <i>{item.user.location}</i>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div>No user post</div>
+            )}
+          </div>
+        )}
+        <div>{isError && <p>An error occured : {isError.message}</p>}</div>
+        <div>{isLoading && <p>Page is loading...</p>}</div>
+      </div>
+    );
 }

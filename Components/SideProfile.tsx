@@ -30,18 +30,40 @@ export default function SideProfile(){
     
     if(!user) return null;
 
-    return(
-        <>{ user &&
-            <div className={main.sideProfile}>
-            <Image src={user.profile_image.small} alt="Profile_pic" className={main.profileImg}></Image>
-            <div style={{marginLeft : "1rem"}}>
-                <Link href={`/user/${user.username}/?client_id=${process.env.accessKey}`} style={{textDecoration : "none", color : "var(--color-fg)"}}><div style={{fontWeight :"bold", fontSize : "large"}}>{user.username}</div></Link>
-                <div style={{fontSize : "small", color : "grey", marginTop : "0.2rem"}}>{user.bio}</div>
+    return (
+      <>
+        {user && (
+          <div className={main.sideProfile}>
+            {/* <Image
+              src={user.profile_image.small}
+              alt="Profile_pic"
+              className={main.profileImg}
+              layout="fill"
+              objectFit="contain"
+            ></Image> */}
+            <div style={{ marginLeft: "1rem" }}>
+              <Link
+                href={`/user/${user.username}/?client_id=${process.env.accessKey}`}
+                style={{ textDecoration: "none", color: "var(--color-fg)" }}
+              >
+                <div style={{ fontWeight: "bold", fontSize: "large" }}>
+                  {user.username}
+                </div>
+              </Link>
+              <div
+                style={{
+                  fontSize: "small",
+                  color: "grey",
+                  marginTop: "0.2rem",
+                }}
+              >
+                {user.bio}
+              </div>
             </div>
-        </div>
-        }
-        {isError && <Error errorMessage={isError.message}/>}
+          </div>
+        )}
+        {isError && <Error errorMessage={isError.message} />}
         {isLoading && <p>Loading...</p>}
-        </>
-    )
+      </>
+    );
 }

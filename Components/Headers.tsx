@@ -34,39 +34,55 @@ export default function Headers()
         fetchProfile();
     },[])
    
-    return(
-        <>
-        {
-            user && 
-            <div className={header.navbar}>
+    return (
+      <>
+        {user && (
+          <div className={header.navbar}>
             <div className={header.navbox}>
-                {/* left */}
-                <div className={header.navtitle}>
-                    <div style={{fontWeight : "600"}}>
-                        SocialSeedlings
-                    </div>
+              {/* left */}
+              <div className={header.navtitle}>
+                <div style={{ fontWeight: "600" }}>SocialSeedlings</div>
+              </div>
+              {/* middle  */}
+              <div className={header.searchWidth}>
+                <div className={header.searchBar}>
+                  <div className={header.iconBar}>
+                    <BiSearch className={header.searchIcon} />
+                  </div>
+                  <input
+                    className={header.searchBox}
+                    type="text"
+                    placeholder="Search"
+                  ></input>
                 </div>
-                {/* middle  */}
-                <div className={header.searchWidth}>
-                    <div className={header.searchBar}>
-                    <div className={header.iconBar}>
-                        <BiSearch className={header.searchIcon}/>
-                       </div>
-                       <input className={header.searchBox} type="text" placeholder="Search"></input>
-                    </div>
-                </div>
-                {/* left  */}
-                <div className={header.iconBox} >
-                    <AiFillHome className={header.home}/>
-                   <button onClick={() => { dispatch(setTheme()) }} style={{border : "none"}}>
-                    {theme === 'light' ? <BsFillSunFill className={header.home} /> : <RiMoonClearFill className={header.home} />}</button>
-                    
-                    <Image src={user.profile_image.small} alt="profile-pic" className={header.profile}></Image>
+              </div>
+              {/* left  */}
+              <div className={header.iconBox}>
+                <AiFillHome className={header.home} />
+                <button
+                  onClick={() => {
+                    dispatch(setTheme());
+                  }}
+                  style={{ border: "none" }}
+                >
+                  {theme === "light" ? (
+                    <BsFillSunFill className={header.home} />
+                  ) : (
+                    <RiMoonClearFill className={header.home} />
+                  )}
+                </button>
 
-                </div>
-
+                <Image
+                  src={user.profile_image.small}
+                  alt="profile-pic"
+                  className={header.profile}
+                  layout="fill"
+                  objectFit="contain"
+                ></Image>
+              </div>
             </div>
-        </div>
-        }</>
-    )
+          </div>
+        )}
+      </>
+    );
 }

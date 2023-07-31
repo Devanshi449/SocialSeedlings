@@ -2,11 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    accessKey: "8vqNs_FAL18STBAEgX5njoNRdFR3jHtagS9iGrf-nVw",
+    accessKey: "CO7yAeYI9ebF0o9lkM1V0bsukD6tTFoeWhGmRoz-E7E",
   },
-  images : {
-    domains : ["images.unsplash.com"]
-  }
+  images: {
+    domains: ["images.unsplash.com"],
+  },
 };
 
 module.exports = nextConfig;
