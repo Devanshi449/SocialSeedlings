@@ -2,8 +2,6 @@
 import React from "react";
 import errorStyles from "../styles/Error.module.css";
 
-
-
 const Error = ({ errorMessage }: { errorMessage: string }) => {
   return (
     <div className={errorStyles.errorContainer}>

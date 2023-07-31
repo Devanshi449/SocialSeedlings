@@ -15,9 +15,15 @@ const dataReducer = (state = initialState, action) => {
         ...state,
         theme: toggleTheme(state.theme),
       };
+    case "SET_USER":
+        return{
+            ...state,
+            user: action.payload
+        }
     default:
       return state;
   }
+
 };
 
 export default dataReducer;

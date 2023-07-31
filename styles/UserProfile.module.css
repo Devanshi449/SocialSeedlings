@@ -25,8 +25,14 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    justify-content: space-between;
     margin: auto;
-    margin-top: 0.5rem;
+    margin-top: 0.8rem;
+    background-color: #d2d1d2;
+    width: 40%;
+    height : 3rem;
+    padding: 0.5rem;
+    border-radius: 15px;
 }
 
 .buttons{
@@ -45,9 +51,17 @@
 }
 
 .profileText{
-    font-size: medium;
+    font-size: xx-large;
     font-weight: bold;
-    margin-top: 0.5rem;
+    margin-top: 0.1rem;
+    font-family: 'Dancing Script', cursive;
+        
+}
+
+.profileName {
+    font-size: medium;
+    font-weight: 700;
+    margin-top: 0.1rem;
 }
 
 .profileImage{
@@ -102,6 +116,8 @@
 .profileCaption{
     margin-top: 0.5rem;
     font-weight: bold;
+    width: 60%;
+    margin: auto;
 }
 
 .bio{
@@ -131,6 +147,17 @@
     .bio{
         font-size: 0.3rem;
     }
+
+        .profileCaption {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            width: 80%;
+            margin: auto;
+        }
+
+        .boxes{
+            width: 80%;
+        }
 }
 
 

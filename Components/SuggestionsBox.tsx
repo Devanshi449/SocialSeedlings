@@ -5,29 +5,13 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 export default function SuggestionsBox()
 {
-    const [user,setUser]=useState<any>(null);
+    const user=useSelector((state : any)=>state.data.user)
     const [isLoading , setIsLoading]=useState(true);
     const [isError,setIsError]=useState<any>(null);
-    
-    const fetchProfile=async()=>{
-        try{
-        const response=await fetch(`https://api.unsplash.com/users/sirsimo/?client_id=${process.env.accessKey}`)
-        const data=await response.json();
-        setUser(data);
-        }
-        catch (error) {
-                setIsError(error);
-            } finally {
-                setIsLoading(false);
-            }
-        }
-
-    useEffect(()=>{
-        fetchProfile();
-    },[])
     
     if(!user) return null;
     return (
@@ -45,6 +29,7 @@ export default function SuggestionsBox()
                 <>
                   <Image
                     src={user.profile_image.small}
+                    loading="lazy"
                     alt="Profile_pic"
                     className={suggestion.image}
                     width={35}
@@ -83,6 +68,7 @@ export default function SuggestionsBox()
               <div className={suggestion.Profilebox}>
                 <>
                   <Image
+                    loading="lazy"
                     src={user.profile_image.small}
                     alt="Profile_pic"
                     className={suggestion.image}

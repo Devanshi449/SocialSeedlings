@@ -4,18 +4,21 @@ import axios from "axios"
 import Image from "next/image";
 import Link from "next/link";
 import Error from "./Error";
+import { useDispatch } from "react-redux";
 
 export default function SideProfile(){
     
     const [user,setUser]=useState<any>(null);
     const [isLoading , setIsLoading]=useState(true);
     const [isError,setIsError]=useState<any>(null);
+    const dispatch=useDispatch();
     
     const fetchProfile=async()=>{
         try{
         const response=await axios.get(`https://api.unsplash.com/users/Devanshi59/?client_id=${process.env.accessKey}`)
         const data=await response.data;
         setUser(data);
+        dispatch({type : "SET_USER", payload : data});
         }
         catch (error) {
                 setIsError(error);
@@ -35,6 +38,7 @@ export default function SideProfile(){
         {user && (
           <div className={main.sideProfile}>
             <Image
+              loading="lazy"
               src={user.profile_image.small}
               alt="Profile_pic"
               className={main.profileImg}

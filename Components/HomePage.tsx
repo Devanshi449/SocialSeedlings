@@ -18,7 +18,7 @@ export default function HomePage() {
     setError(null);
     try {
       const response = await axios.get(
-        `https://api.unsplash.com/photos/random/?client_id=${process.env.accessKey}`
+        `https://api.unsplash.com/photos/?client_id=${process.env.accessKey}`
       );
       setItem([...items,...response.data]);
       localStorage.setItem("homeData", JSON.stringify(items));
@@ -80,7 +80,7 @@ export default function HomePage() {
                     id={item.id}
                     username={item.user.username}
                     userImg={item.user.profile_image.small}
-                    img={item.urls.raw}
+                    img={item.urls.regular}
                     caption={item.alt_description}
                     like={item.likes}
                     blurHash={item.blur_hash}

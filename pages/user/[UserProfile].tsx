@@ -56,27 +56,32 @@ export default function UserProfile(){
         {user && (
           <div className={userProfile.imageData}>
             <Image
+              loading="lazy"
               src={user.profile_image.large}
               alt="profile Image"
               className={userProfile.profileImage}
-              layout="fill"
-              objectFit="contain"
+              width={100}
+              height={100}
             />
-            <div className={userProfile.profileText}>
-              Username : {user.username}
+            <div className={userProfile.profileText}>{user.username}</div>
+            <div className={userProfile.profileName}>
+              {user.first_name} {user.last_name}
             </div>
-            <div className={userProfile.profileText}>
-              Name : {user.first_name} {user.last_name}
-            </div>
-            <div className={userProfile.profileCaption}>
+            <div
+              className={userProfile.profileCaption}
+              style={{ marginTop: "1.2rem" }}
+            >
               Bio : <i>{user.bio}</i>
             </div>
             <div className={userProfile.boxes}>
               <div className={userProfile.details}>
-                No of Followers : <b>{user.followers_count}</b>
+                Followers  <b>{user.followers_count}</b>
+              </div>
+              <div style={{ marginLeft: "1rem" , display : "block"}}>
+                Country  <div><b>{user.location}</b></div>
               </div>
               <div style={{ marginLeft: "1rem" }}>
-                Country : <b>{user.location}</b>
+                Following  <b>{user.following_count}</b>
               </div>
             </div>
             <button
@@ -93,11 +98,12 @@ export default function UserProfile(){
               photo.map((item: any) => (
                 <div key={item.id} className={userProfile.userProfilebox}>
                   <Image
+                    loading="lazy"
                     src={item.urls.small}
                     alt="Image"
                     className={userProfile.imageGalleryImage}
-                    layout="fill"
-                    objectFit="contain"
+                    width={70}
+                    height={70}
                   />
                   <div className={userProfile.des}>{item.alt_description}</div>
                 </div>
@@ -118,11 +124,12 @@ export default function UserProfile(){
                       UserName : {item.user.username}
                     </div>
                     <Image
+                      loading="lazy"
                       src={item.urls.regular}
                       alt="Image"
                       className={userProfile.imageimg}
-                      layout="fill"
-                      objectFit="contain"
+                      width ={500}
+                      height={500}
                     />
                   </div>
                   <div>{item.alt_description}</div>

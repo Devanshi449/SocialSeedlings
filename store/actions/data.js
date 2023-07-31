@@ -6,3 +6,9 @@ export const setTheme = (payload) => {
     type: actionTypes.TOGGLE_THEME,
   };
 };
+
+export const setUser=(payload)=>{
+    return{
+        type : "SET_USER",payload
+    }
+}

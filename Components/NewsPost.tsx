@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Blurhash } from "react-blurhash";
+import { useSelector } from "react-redux";
 
 interface NewsPostProps {
   id: number;
@@ -20,17 +21,18 @@ interface NewsPostProps {
 
 export default function NewsPost({ id, username, userImg, img, caption , like , blurHash}: NewsPostProps)
 {
+    const theme = useSelector((state: any) => state.data.theme);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     return (
-      <div className={post.newsFeed}>
+      <div className={theme === "light" ? post.light : post.dark}>
         <div className={post.newsHeader}>
           <Image
+            loading="lazy"
             src={userImg}
             alt=""
             className={post.postImage}
-            height ={40}
+            height={40}
             width={40}
-            
           ></Image>
           <Link
             href={`/user/${username}/?client_id=${process.env.accessKey}`}
@@ -52,11 +54,11 @@ export default function NewsPost({ id, username, userImg, img, caption , like , 
           }}
         >
           <Image
+            loading="lazy"
             src={img}
             alt=""
             className={post.img}
-            //   layout="fill"
-              objectFit="contain"
+            objectFit="contain"
             height={500}
             width={500}
             onLoadingComplete={() => {
@@ -73,7 +75,7 @@ export default function NewsPost({ id, username, userImg, img, caption , like , 
             hash={blurHash}
             height={500}
             style={{
-              width : "100%",
+              width: "100%",
               objectFit: "cover",
               opacity: isImageLoaded ? 0.5 : 1,
               transition: "opacity 0.3s ease-in-out",
@@ -86,18 +88,27 @@ export default function NewsPost({ id, username, userImg, img, caption , like , 
           />
         </div>
         <div className={post.iconBar}>
-          <AiFillLike className={post.like} style={{ marginLeft: "0rem" }} />
+          <AiFillLike
+            className={post.like}
+            style={{ marginLeft: "0rem", color: "var[--color-fg]" }}
+          />
           <div>{like}</div>
-          <FaRegCommentDots className={post.like} />
+          <FaRegCommentDots
+            className={post.like}
+            style={{ color: "var[--color-fg]" }}
+          />
         </div>
 
-        <div className={post.caption}>
+        <div className={post.caption} style={{ color: "var[--color-fg]" }}>
           <span className={post.data}>{username}</span>
           <div className={post.bio}>{caption}</div>
         </div>
 
         <form className={post.form}>
-          <BsEmojiSmile className={post.smileIcon} />
+          <BsEmojiSmile
+            className={post.smileIcon}
+            style={{ color: "var[--color-fg]" }}
+          />
           <input
             type="text"
             placeholder="Add your comment"
